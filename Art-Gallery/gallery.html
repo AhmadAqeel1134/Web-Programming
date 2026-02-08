@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        .header {
+            overflow: hidden;
+            background-color: #f1f1f1;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .header-center {
+            display: flex;
+            background-color: #e0e0e0;
+            border-radius: 25px;
+            padding: 5px;
+            gap: 5px;
+        }
+        
+        .header-center a {
+            color: black;
+            text-align: center;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 20px;
+        }
+        
+        .header-center a.active {
+            background-color: #b1b1b1;
+            color: white;
+        }
+        
+        .header-right {
+            position: absolute;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .header-right a {
+            color: black;
+            text-align: center;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 16px;
+            border: 1px solid #333;
+            border-radius: 4px;
+        }
+        
+        @media screen and (max-width: 500px) {
+            .header a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+            
+            .header-right {
+                float: none;
+            }
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .art-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .art-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background-color: #e0e0e0;
+        }
+        
+        .art-item h3 {
+            margin: 10px 0 5px 0;
+            color: #333;
+        }
+        
+        .art-item p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="header">
+        <div class="header-center">
+            <a class="active" href="gallery.html">Gallery</a>
+            <a href="about.html">About</a>
+            <a href="feedback.html">Feedback</a>
+        </div>
+        <div class="header-right">
+            <a href="sign-up.html">Sign Up</a>
+            <a href="sign-in.html">Sign In</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2 style="margin-bottom: 20px; color: #333;">Featured Artworks</h2>
+        
+        <div class="gallery">
+            <div class="art-item">
+                <img src="./images/cook.jpg" alt="Painting 1">
+                <h3>England Captain</h3>
+                <p>Cook</p>
+            </div>
+            
+            <div class="art-item">
+                <img src="./images/bumrah.jpg" alt="Painting 2">
+                <h3>Indian Bowler</h3>
+                <p>Bumrah</p>
+            </div>
+            
+            <div class="art-item">
+                <img src="./images/abishek.jpg" alt="Painting 3">
+                <h3>Indian Batsmen</h3>
+                <p>Abishek Sharma</p>
+            </div>
+            
+            <div class="art-item">
+                <img src="./images/bowlers.jpg" alt="Painting 4">
+                <h3>Indo-Pak</h3>
+                <p>Bowlers</p>
+            </div>
+            
+            <div class="art-item">
+                <img src="./images/joe-root.jpg" alt="Painting 5">
+                <h3>English Batsman</h3>
+                <p>Joe Root</p>
+            </div>
+            
+            <div class="art-item">
+                <img src="./images/rizwan.jpg" alt="Painting 6">
+                <h3>Wicket Keeper Batsman</h3>
+                <p>Muhammad Rizwan</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Cricket Art Gallery</p>
+    </footer>
+</body>
+</html>
