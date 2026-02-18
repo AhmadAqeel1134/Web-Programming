@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Editor - CS-4032</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="app-title">
+                <span class="title-icon">📸</span>
+                Photo Editor
+            </h1>
+            <div class="header-controls">
+                <button id="loadBtn" class="btn-primary">
+                    <span class="btn-icon">📁</span>
+                    Choose Image
+                </button>
+                <button id="saveBtn" class="btn-primary" disabled>
+                    <span class="btn-icon">💾</span>
+                    Save Image
+                </button>
+                <button id="resetBtn" class="btn-secondary" disabled>
+                    <span class="btn-icon">↺</span>
+                    Reset
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Left: Canvas + Preview -->
+            <section class="workspace">
+                <div class="canvas-wrapper">
+                    <div class="canvas-label">Preview</div>
+                    <div class="canvas-inner">
+                        <canvas id="canvas"></canvas>
+                        <div class="canvas-overlay" id="canvasOverlay">
+                            <p class="overlay-text">Choose an image to begin</p>
+                            <p class="overlay-hint">JPG, PNG or GIF</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-strip" id="previewStrip">
+                    <div class="preview-item preview-original">
+                        <span class="preview-label">Original</span>
+                        <div class="preview-thumb" id="originalPreview">
+                            <span class="preview-placeholder">—</span>
+                        </div>
+                    </div>
+                    <div class="preview-divider"></div>
+                    <div class="preview-item preview-current">
+                        <span class="preview-label">Edited</span>
+                        <div class="preview-thumb" id="currentPreview">
+                            <span class="preview-placeholder">—</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right: Controls Panel -->
+            <aside class="controls-panel">
+                <div class="panel-inner">
+                <!-- Filter Controls -->
+                <div class="control-group">
+                    <h2 class="control-group-title">Filters</h2>
+                    
+                    <div class="control-grid">
+                    <!-- Brightness -->
+                    <div class="control-item">
+                        <label class="control-label">
+                            <span class="label-text">Brightness</span>
+                            <span class="control-value" id="brightnessValue">100</span>
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="brightnessSlider" class="slider" 
+                                   min="0" max="200" value="100" step="2">
+                            <div class="slider-track"></div>
+                        </div>
+                    </div>
+
+                    <div class="control-item">
+                        <label class="control-label">
+                            <span class="label-text">Saturation</span>
+                            <span class="control-value" id="saturationValue">100</span>
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="saturationSlider" class="slider" 
+                                   min="0" max="200" value="100" step="2">
+                            <div class="slider-track"></div>
+                        </div>
+                    </div>
+
+                    <div class="control-item">
+                        <label class="control-label">
+                            <span class="label-text">Inversion</span>
+                            <span class="control-value" id="inversionValue">0</span>
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="inversionSlider" class="slider" 
+                                   min="0" max="100" value="0" step="1">
+                            <div class="slider-track"></div>
+                        </div>
+                    </div>
+
+                    <div class="control-item">
+                        <label class="control-label">
+                            <span class="label-text">Grayscale</span>
+                            <span class="control-value" id="grayscaleValue">0</span>
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="grayscaleSlider" class="slider" 
+                                   min="0" max="100" value="0" step="1">
+                            <div class="slider-track"></div>
+                        </div>
+                    </div>
+
+                    <div class="control-item">
+                        <label class="control-label">
+                            <span class="label-text">Sepia</span>
+                            <span class="control-value" id="sepiaValue">0</span>
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="sepiaSlider" class="slider" 
+                                   min="0" max="100" value="0" step="1">
+                            <div class="slider-track"></div>
+                        </div>
+                    </div>
+
+                    <div class="control-item">
+                        <label class="control-label">
+                            <span class="label-text">Blur</span>
+                            <span class="control-value" id="blurValue">0</span>
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="blurSlider" class="slider" 
+                                   min="0" max="20" value="0" step="0.5">
+                            <div class="slider-track"></div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <!-- Transform Controls -->
+                <div class="control-group">
+                    <h2 class="control-group-title">Transform</h2>
+                    <div class="control-grid">
+                    <div class="control-item">
+                        <label class="control-label">
+                            <span class="label-text">Rotate</span>
+                            <span class="control-value" id="rotateValue">0°</span>
+                        </label>
+                        <div class="slider-container">
+                            <input type="range" id="rotateSlider" class="slider" 
+                                   min="-180" max="180" value="0" step="1">
+                            <div class="slider-track"></div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="button-group">
+                        <button id="flipHorizontalBtn" class="btn-transform">
+                            <span class="btn-icon">↔</span>
+                            Flip H
+                        </button>
+                        <button id="flipVerticalBtn" class="btn-transform">
+                            <span class="btn-icon">↕</span>
+                            Flip V
+                        </button>
+                    </div>
+                </div>
+
+                <!-- History Controls -->
+                <div class="control-group">
+                    <h2 class="control-group-title">History</h2>
+                    <div class="button-group">
+                        <button id="undoBtn" class="btn-history" disabled>
+                            <span class="btn-icon">⏪</span>
+                            Undo
+                        </button>
+                        <button id="redoBtn" class="btn-history" disabled>
+                            <span class="btn-icon">⏩</span>
+                            Redo
+                        </button>
+                    </div>
+                    <div class="history-panel" id="historyPanel">
+                        <p class="history-empty">No history yet</p>
+                    </div>
+                </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Hidden file input -->
+    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+
+    <script src="script.js"></script>
+</body>
+</html>
